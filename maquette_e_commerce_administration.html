@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full bg-slate-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INIK Mode | Boutiques & Mode en RDC - Propulsé par INIK Consulting</title>
+
+    <!-- Tailwind CSS pour un design responsive et moderne -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 6 pour les icônes haute résolution -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Polices Google Font Inter pour une lisibilité optimale -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Configuration de la palette personnalisée INIK Consulting -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        inik: {
+                            50: '#f4f7fb',
+                            100: '#e5edf6',
+                            600: '#1e3a8a', // Bleu institutionnel
+                            700: '#1d2f6f',
+                            900: '#0f172a',
+                            gold: '#d97706', // Accent dorure élégante
+                            goldhover: '#b45309'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Styles personnalisés pour des animations fluides et masquage des sections non actives */
+        .page-view {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.25s ease-in-out;
+        }
+        .page-view.active {
+            display: block;
+            opacity: 1;
+        }
+        /* Style du scrollbar personnalisé */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col font-sans text-slate-800 antialiased selection:bg-inik-600 selection:text-white">
+
+    <!-- ========================================== -->
+    <!-- BARRE D'INFORMATION ET DE CONTACT SUPERIEURE -->
+    <!-- ========================================== -->
+    <div class="bg-inik-900 text-slate-300 text-xs py-2 px-4 sm:px-8 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <!-- Contact rapide cliquable Inik Consulting -->
+            <div class="flex items-center space-x-6">
+                <a href="tel:+243977148977" class="hover:text-amber-400 transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-phone text-amber-500"></i>
+                    <span>+243 977 148 977</span>
+                </a>
+                <a href="mailto:info@inikconsulting.net" class="hover:text-amber-400 transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-envelope text-amber-500"></i>
+                    <span>info@inikconsulting.net</span>
+                </a>
+                <a href="https://inikconsulting.net" target="_blank" class="hidden md:flex hover:text-amber-400 transition-colors items-center gap-1.5">
+                    <i class="fa-solid fa-globe text-amber-500"></i>
+                    <span>inikconsulting.net</span>
+                </a>
+            </div>
+            <!-- Message promotionnel & Commutateur de Devise -->
+            <div class="flex items-center space-x-4">
+                <span class="text-slate-400 hidden lg:inline">Livraison rapide à Kinshasa, Lubumbashi, Kolwezi et Likasi</span>
+                <div class="flex items-center bg-slate-800 rounded px-2 py-0.5 border border-slate-700 text-slate-200">
+                    <span class="font-medium text-amber-400">USD $</span>
+                    <span class="mx-1.5 text-slate-600">|</span>
+                    <span class="text-slate-400 text-[11px]">Taux: 1$ = 2.800 FC</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- ENTETE PRINCIPALE & NAVIGATION DU SITE -->
+    <!-- ========================================== -->
+    <header class="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo Marque INIK Mode -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('index')">
+                    <div class="bg-inik-900 text-amber-400 p-2.5 rounded-xl shadow-md border border-amber-500/20">
+                        <i class="fa-solid fa-shirt text-xl"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center space-x-1.5">
+                            <span class="text-2xl font-black tracking-tight text-inik-900">INIK</span>
+                            <span class="text-2xl font-light text-amber-600 uppercase tracking-widest">Mode</span>
+                        </div>
+                        <span class="text-[10px] uppercase font-semibold text-slate-500 tracking-wider block -mt-1">
+                            Par INIK Consulting
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Navigation Client Principale -->
+                <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-slate-700" id="main-nav">
+                    <button onclick="navigateTo('index')" class="nav-btn hover:text-inik-600 transition-colors py-2 border-b-2 border-transparent" data-page="index">
+                        Accueil
+                    </button>
+                    <button onclick="navigateTo('catalogue')" class="nav-btn hover:text-inik-600 transition-colors py-2 border-b-2 border-transparent" data-page="catalogue">
+                        Catalogue & Collections
+                    </button>
+                    <button onclick="navigateTo('apropos')" class="nav-btn hover:text-inik-600 transition-colors py-2 border-b-2 border-transparent" data-page="apropos">
+                        À Propos
+                    </button>
+                    <button onclick="navigateTo('contact')" class="nav-btn hover:text-inik-600 transition-colors py-2 border-b-2 border-transparent" data-page="contact">
+                        Contact
+                    </button>
+                </nav>
+
+                <!-- Actions Droite (Recherche, Panier & Espace Admin) -->
+                <div class="flex items-center space-x-4">
+                    
+                    <!-- Bouton Panier Client avec Compteur -->
+                    <button onclick="navigateTo('panier')" class="relative p-2.5 text-slate-700 hover:text-inik-600 hover:bg-slate-100 rounded-full transition-all">
+                        <i class="fa-solid fa-bag-shopping text-xl"></i>
+                        <span id="cart-count" class="absolute -top-1 -right-1 bg-amber-500 text-white font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center shadow-sm">
+                            0
+                        </span>
+                    </button>
+
+                    <!-- Accès Discret à l'Espace d'Administration -->
+                    <button onclick="navigateTo('admin-index')" class="hidden sm:flex items-center space-x-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold py-2 px-3.5 rounded-lg transition-all shadow border border-slate-700">
+                        <i class="fa-solid fa-user-shield text-amber-400"></i>
+                        <span>Espace Admin</span>
+                    </button>
+
+                    <!-- Bouton Menu Mobile -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Mobile Améliorée -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-3 shadow-lg">
+            <button onclick="navigateTo('index'); toggleMobileMenu()" class="block w-full text-left py-2 text-slate-800 font-medium border-b border-slate-100">Accueil</button>
+            <button onclick="navigateTo('catalogue'); toggleMobileMenu()" class="block w-full text-left py-2 text-slate-800 font-medium border-b border-slate-100">Catalogue & Collections</button>
+            <button onclick="navigateTo('apropos'); toggleMobileMenu()" class="block w-full text-left py-2 text-slate-800 font-medium border-b border-slate-100">À Propos</button>
+            <button onclick="navigateTo('contact'); toggleMobileMenu()" class="block w-full text-left py-2 text-slate-800 font-medium border-b border-slate-100">Contact</button>
+            <button onclick="navigateTo('admin-index'); toggleMobileMenu()" class="flex items-center justify-center gap-2 w-full text-center py-2.5 bg-slate-900 text-white font-medium rounded-lg mt-4">
+                <i class="fa-solid fa-user-shield text-amber-400"></i>
+                <span>Accéder à l'Administration</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- ZONE DU CONTENU DYNAMIQUE MULTI-PAGES -->
+    <!-- ========================================== -->
+    <main class="flex-grow">
+
+        <!-- ======================================= -->
+        <!-- VUE 1 : VUE D'ACCUEIL (index.html) -->
+        <!-- ======================================= -->
+        <section id="page-index" class="page-view active">
+            <!-- Hero Banner Moderne -->
+            <div class="relative bg-slate-900 text-white overflow-hidden">
+                <div class="absolute inset-0 z-0 opacity-40">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=80" alt="Portant de vêtements de mode INIK Store" class="w-full h-full object-cover">
+                </div>
+                <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 flex flex-col justify-center">
+                    <div class="max-w-2xl">
+                        <span class="inline-block bg-amber-500/20 text-amber-300 font-semibold text-xs tracking-widest uppercase px-3 py-1 rounded-full border border-amber-500/30 mb-4">
+                            Collection Élégance RDC 2026
+                        </span>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-white mb-6">
+                            La Haute Couture Prêt-à-Porter à <span class="text-amber-400">Kinshasa & Lubumbashi</span>.
+                        </h1>
+                        <p class="text-lg text-slate-300 mb-8 leading-relaxed">
+                            Découvrez la nouvelle sélection vestimentaire raffinée signée INIK Mode. Des tenues d'exception livrées partout en République Démocratique du Congo avec paiement sécurisé par Mobile Money.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <button onclick="navigateTo('catalogue')" class="bg-amber-600 hover:bg-amber-500 text-white font-bold py-3.5 px-8 rounded-xl shadow-lg hover:shadow-amber-600/30 transition-all flex items-center gap-3">
+                                <span>Explorer le Catalogue</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                            <button onclick="navigateTo('contact')" class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-semibold py-3.5 px-6 rounded-xl border border-white/20 transition-all">
+                                Nous Contacter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Avantages Logistiques & Service Client RDC -->
+            <div class="bg-white border-b border-slate-200 py-8">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center md:text-left">
+                        <div class="flex items-center space-x-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+                            <div class="bg-inik-600 text-white p-3 rounded-lg text-xl flex-shrink-0">
+                                <i class="fa-solid fa-truck-fast"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">Livraison Express RDC</h4>
+                                <p class="text-xs text-slate-500">Expédition à domicile sous 24h/48h</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+                            <div class="bg-amber-500 text-white p-3 rounded-lg text-xl flex-shrink-0">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">Mobile Money Sécurisé</h4>
+                                <p class="text-xs text-slate-500">M-Pesa, Airtel Money & Orange Money</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+                            <div class="bg-inik-900 text-white p-3 rounded-lg text-xl flex-shrink-0">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">Garantie INIK Consulting</h4>
+                                <p class="text-xs text-slate-500">Vêtements conformes & qualitatifs</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+                            <div class="bg-emerald-600 text-white p-3 rounded-lg text-xl flex-shrink-0">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">Assistance WhatsApp 7j/7</h4>
+                                <p class="text-xs text-slate-500">+243 977 148 977</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grille des Catégories Principales -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="text-3xl font-extrabold text-slate-900">Collections par Catégorie</h2>
+                    <p class="text-slate-600 mt-2">Sélectionnez la gamme de vêtements idéale pour votre style quotidien ou événements professionnels.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Carte Catégorie Homme -->
+                    <div onclick="filterCategoryAndNavigate('Homme')" class="group relative rounded-2xl overflow-hidden shadow-md cursor-pointer aspect-[4/5] bg-slate-900">
+                        <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=800&q=80" alt="Collection Homme INIK Mode" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-90">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent flex flex-col justify-end p-6">
+                            <span class="text-amber-400 font-semibold text-xs tracking-wider uppercase mb-1">Collection Luxe</span>
+                            <h3 class="text-2xl font-bold text-white">Vestes & Costumes</h3>
+                            <span class="text-slate-300 text-xs mt-1">Découvrir les articles <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Carte Catégorie Femme -->
+                    <div onclick="filterCategoryAndNavigate('Femme')" class="group relative rounded-2xl overflow-hidden shadow-md cursor-pointer aspect-[4/5] bg-slate-900">
+                        <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80" alt="Collection Femme INIK Mode" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-90">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent flex flex-col justify-end p-6">
+                            <span class="text-amber-400 font-semibold text-xs tracking-wider uppercase mb-1">Tendance & Chic</span>
+                            <h3 class="text-2xl font-bold text-white">Robes & Ensembles</h3>
+                            <span class="text-slate-300 text-xs mt-1">Découvrir les articles <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Carte Catégorie Casual / Chemises -->
+                    <div onclick="filterCategoryAndNavigate('Casual')" class="group relative rounded-2xl overflow-hidden shadow-md cursor-pointer aspect-[4/5] bg-slate-900">
+                        <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=800&q=80" alt="Vêtements Casual INIK Store" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-90">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent flex flex-col justify-end p-6">
+                            <span class="text-amber-400 font-semibold text-xs tracking-wider uppercase mb-1">Style Quotidien</span>
+                            <h3 class="text-2xl font-bold text-white">Chemises & Polos</h3>
+                            <span class="text-slate-300 text-xs mt-1">Découvrir les articles <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Carte Accessoires & Chaussures -->
+                    <div onclick="filterCategoryAndNavigate('Accessoires')" class="group relative rounded-2xl overflow-hidden shadow-md cursor-pointer aspect-[4/5] bg-slate-900">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80" alt="Accessoires de mode RDC" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-90">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent flex flex-col justify-end p-6">
+                            <span class="text-amber-400 font-semibold text-xs tracking-wider uppercase mb-1">Finition Parfaite</span>
+                            <h3 class="text-2xl font-bold text-white">Chaussures & Accessoires</h3>
+                            <span class="text-slate-300 text-xs mt-1">Découvrir les articles <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Nouveautés Produits Phares (Injectés via JS) -->
+            <div class="bg-slate-100 py-16 border-t border-slate-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-10">
+                        <div>
+                            <span class="text-inik-600 font-bold text-xs uppercase tracking-widest">Sélection Exclusive</span>
+                            <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Dernières Nouveautés</h2>
+                        </div>
+                        <button onclick="navigateTo('catalogue')" class="mt-4 sm:mt-0 text-inik-600 hover:text-inik-900 font-semibold text-sm flex items-center gap-2 group">
+                            Voir toute la boutique <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+
+                    <!-- Conteneur Produits en Vedette -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="featured-products-container">
+                        <!-- Produits générés dynamiquement par le script Javascript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ======================================= -->
+        <!-- VUE 2 : CATALOGUE PRODUITS (catalogue.html) -->
+        <!-- ======================================= -->
+        <section id="page-catalogue" class="page-view">
+            <div class="bg-inik-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <h1 class="text-3xl font-extrabold">Catalogue Général des Vêtements</h1>
+                        <p class="text-slate-400 text-sm mt-1">Explorez nos collections exclusives adaptées à toutes vos occasions.</p>
+                    </div>
+                    <div class="flex items-center space-x-2 text-xs text-slate-400">
+                        <span>Accueil</span>
+                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        <span class="text-amber-400 font-medium">Boutique & Mode</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div class="flex flex-col lg:flex-row gap-8">
+                    
+                    <!-- Panneau de Filtrage Gauche -->
+                    <div class="w-full lg:w-64 flex-shrink-0">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 sticky top-28 space-y-6">
+                            
+                            <!-- Champ de Recherche -->
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-600 mb-2">Recherche instantanée</label>
+                                <div class="relative">
+                                    <input type="text" id="search-input" onkeyup="filterProducts()" placeholder="Ex: Veste, Chemise..." class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 pl-9 pr-3 text-sm focus:outline-none focus:ring-2 focus:ring-inik-600">
+                                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-3.5 text-slate-400 text-xs"></i>
+                                </div>
+                            </div>
+
+                            <!-- Filtre par Catégories -->
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-600 mb-2">Catégorie</label>
+                                <div class="space-y-1.5" id="category-filters">
+                                    <button onclick="setCategoryFilter('Tous')" class="cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium bg-inik-600 text-white">Tous les vêtements</button>
+                                    <button onclick="setCategoryFilter('Homme')" class="cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-100">Homme</button>
+                                    <button onclick="setCategoryFilter('Femme')" class="cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-100">Femme</button>
+                                    <button onclick="setCategoryFilter('Casual')" class="cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-100">Casual & Chemises</button>
+                                    <button onclick="setCategoryFilter('Accessoires')" class="cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-100">Accessoires & Chaussures</button>
+                                </div>
+                            </div>
+
+                            <!-- Tri des Prix -->
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-600 mb-2">Trier par Prix</label>
+                                <select id="sort-select" onchange="filterProducts()" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-inik-600">
+                                    <option value="default">Par défaut</option>
+                                    <option value="low-high">Prix : Croissant</option>
+                                    <option value="high-low">Prix : Décroissant</option>
+                                </select>
+                            </div>
+
+                            <!-- Encadré Support Commercial -->
+                            <div class="bg-amber-50 rounded-xl p-4 border border-amber-200 text-amber-900 text-xs space-y-2">
+                                <div class="font-bold flex items-center gap-1.5 text-amber-800">
+                                    <i class="fa-brands fa-whatsapp text-emerald-600 text-base"></i>
+                                    <span>Commande Directe</span>
+                                </div>
+                                <p>Besoin d'un conseil de taille ou commande spécifique ? Contactez l'équipe INIK Consulting.</p>
+                                <a href="https://wa.me/243977148977" target="_blank" class="inline-block text-amber-800 font-bold underline hover:text-amber-900">WhatsApp: +243 977 148 977</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Liste des Produits Grille principale -->
+                    <div class="flex-grow">
+                        <div class="flex justify-between items-center mb-6">
+                            <p class="text-sm text-slate-500">Affichage de <span id="product-count" class="font-bold text-slate-900">0</span> articles</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="catalog-grid">
+                            <!-- Produits injectés dynamiquement -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ======================================= -->
+        <!-- VUE 3 : FICHE DETAIL PRODUIT (produit.html) -->
+        <!-- ======================================= -->
+        <section id="page-produit" class="page-view">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <button onclick="navigateTo('catalogue')" class="mb-6 text-sm font-semibold text-inik-600 hover:text-inik-900 flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Retour au catalogue</span>
+                </button>
+
+                <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden p-6 sm:p-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12" id="product-detail-container">
+                        <!-- Contenu du produit sélectionné généré dynamiquement -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ======================================= -->
+        <!-- VUE 4 : PANIER & COMMANDE (panier.html) -->
+        <!-- ======================================= -->
+        <section id="page-panier" class="page-view">
+            <div class="bg-slate-900 text-white py-10 px-4 sm:px-6 lg:px-8 mb-8">
+                <div class="max-w-7xl mx-auto">
+                    <h1 class="text-3xl font-extrabold">Votre Panier & Finalisation</h1>
+                    <p class="text-slate-400 text-sm mt-1">Vérifiez vos articles et renseignez vos informations de livraison en RDC.</p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    
+                    <!-- Colonne 1 : Liste des Articles dans le Panier -->
+                    <div class="lg:col-span-7 space-y-4">
+                        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                            <h3 class="text-lg font-bold text-slate-900 mb-4 border-b border-slate-100 pb-3 flex items-center justify-between">
+                                <span>Articles sélectionnés</span>
+                                <span id="cart-item-count-badge" class="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full font-semibold">0 article</span>
+                            </h3>
+                            
+                            <div id="cart-items-list" class="divide-y divide-slate-100">
+                                <!-- Articles du panier injectés par JS -->
+                            </div>
+                        </div>
+
+                        <!-- Garanties de service INIK -->
+                        <div class="bg-slate-100 rounded-2xl p-4 text-xs text-slate-600 space-y-2 border border-slate-200">
+                            <div class="flex items-center gap-2 font-bold text-slate-800">
+                                <i class="fa-solid fa-lock text-inik-600"></i>
+                                <span>Paiement Sécurisé Mobile Money</span>
+                            </div>
+                            <p>Toutes les transactions sont directes et confirmées auprès de notre agent commercial Inik Consulting après validation de la commande.</p>
+                        </div>
+                    </div>
+
+                    <!-- Colonne 2 : Formulaire de Livraison Congolais & Paiement -->
+                    <div class="lg:col-span-5">
+                        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm sticky top-28">
+                            <h3 class="text-lg font-bold text-slate-900 mb-4 border-b border-slate-100 pb-3">Détails de Livraison & Paiement</h3>
+
+                            <form id="checkout-form" onsubmit="handleCheckout(event)" class="space-y-4">
+                                
+                                <!-- Nom Complet (Exemples RDC) -->
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Nom et Prénom client *</label>
+                                    <input type="text" required id="cust-name" placeholder="Ex: Jean-Baptiste Mukendi" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-inik-600">
+                                </div>
+
+                                <!-- Téléphone / WhatsApp -->
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Numéro Téléphone / WhatsApp *</label>
+                                    <input type="tel" required id="cust-phone" placeholder="Ex: +243 812 345 678" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-inik-600">
+                                </div>
+
+                                <!-- Ville de Livraison RDC -->
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Ville de destination *</label>
+                                    <select id="cust-city" required class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-inik-600">
+                                        <option value="Lubumbashi">Lubumbashi (Haut-Katanga)</option>
+                                        <option value="Kinshasa">Kinshasa (Gombe, Ngaliema, Limete...)</option>
+                                        <option value="Likasi">Likasi</option>
+                                        <option value="Kolwezi">Kolwezi (Lualaba)</option>
+                                        <option value="Goma">Goma (Nord-Kivu)</option>
+                                    </select>
+                                </div>
+
+                                <!-- Adresse physique -->
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Adresse physique de livraison *</label>
+                                    <input type="text" required id="cust-address" placeholder="Ex: N° 45, Av. Lumumba, Quartier Golfe" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-inik-600">
+                                </div>
+
+                                <!-- Mode de Paiement Mobile Money local -->
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-600 mb-2">Mode de Paiement *</label>
+                                    <div class="grid grid-cols-2 gap-2 text-xs">
+                                        <label class="border border-slate-200 rounded-xl p-3 flex items-center space-x-2 cursor-pointer hover:bg-slate-50">
+                                            <input type="radio" name="payment-method" value="M-Pesa" checked class="text-inik-600">
+                                            <span class="font-bold text-slate-800">M-Pesa</span>
+                                        </label>
+                                        <label class="border border-slate-200 rounded-xl p-3 flex items-center space-x-2 cursor-pointer hover:bg-slate-50">
+                                            <input type="radio" name="payment-method" value="Airtel Money" class="text-inik-600">
+                                            <span class="font-bold text-slate-800">Airtel Money</span>
+                                        </label>
+                                        <label class="border border-slate-200 rounded-xl p-3 flex items-center space-x-2 cursor-pointer hover:bg-slate-50">
+                                            <input type="radio" name="payment-method" value="Orange Money" class="text-inik-600">
+                                            <span class="font-bold text-slate-800">Orange Money</span>
+                                        </label>
+                                        <label class="border border-slate-200 rounded-xl p-3 flex items-center space-x-2 cursor-pointer hover:bg-slate-50">
+                                            <input type="radio" name="payment-method" value="Paiement à la livraison" class="text-inik-600">
+                                            <span class="font-bold text-slate-800">Cash à livraison</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Récapitulatif Financier -->
+                                <div class="border-t border-slate-200 pt-4 space-y-2">
+                                    <div class="flex justify-between text-sm text-slate-600">
+                                        <span>Sous-total articles :</span>
+                                        <span id="summary-subtotal" class="font-semibold text-slate-800">$0.00</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm text-slate-600">
+                                        <span>Frais de livraison estimés :</span>
+                                        <span class="font-semibold text-emerald-600">$5.00 (14.000 FC)</span>
+                                    </div>
+                                    <div class="flex justify-between text-base font-extrabold text-slate-900 border-t border-slate-100 pt-3">
+                                        <span>Total à payer :</span>
+                                        <div class="text-right">
+                                            <div id="summary-total-usd" class="text-xl text-inik-600">$0.00</div>
+                                            <div id="summary-total-fc" class="text-xs text-slate-500 font-normal">~ 0 FC</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="w-full bg-amber-600 hover:bg-amber-500 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-check-circle"></i>
+                                    <span>Valider la Commande sur WhatsApp</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ======================================= -->
+        <!-- VUE 5 : A PROPOS (apropos.html) -->
+        <!-- ======================================= -->
+        <section id="page-apropos" class="page-view">
+            <div class="bg-inik-900 text-white py-16 px-4 sm:px-6 lg:px-8 text-center">
+                <div class="max-w-3xl mx-auto">
+                    <span class="text-amber-400 font-semibold text-xs tracking-widest uppercase">Expertise & Élégance</span>
+                    <h1 class="text-4xl font-extrabold mt-2 mb-4">À Propos de INIK Mode</h1>
+                    <p class="text-slate-300 text-base leading-relaxed">
+                        Une initiative innovante signée **INIK Consulting**, dédiée à la digitalisation du prêt-à-porter de luxe et de la mode moderne en République Démocratique du Congo.
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+                <!-- Bloc Mission -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-900 mb-4">Notre Mission d'Excellence</h2>
+                        <p class="text-slate-600 leading-relaxed mb-4">
+                            INIK Mode a été créée pour offrir aux hommes et femmes exigeants de RDC un accès rapide, simple et sécurisé à des garde-robes élégantes, modernes et adaptées au climat local.
+                        </p>
+                        <p class="text-slate-600 leading-relaxed">
+                            Chaque pièce de notre boutique est sélectionnée avec rigueur pour sa qualité de confection, ses finitions parfaites et son confort exceptionnel.
+                        </p>
+                    </div>
+                    <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+                        <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=800&q=80" alt="Qualité vestimentaire Inik Mode" class="w-full h-80 object-cover">
+                    </div>
+                </div>
+
+                <!-- Présentation INIK Consulting -->
+                <div class="bg-inik-50 border border-inik-100 rounded-3xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="space-y-3">
+                        <span class="bg-inik-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Propulsé par</span>
+                        <h3 class="text-2xl font-extrabold text-inik-900">INIK Consulting</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed max-w-xl">
+                            Cabinet de conseil et de solutions numériques en République Démocratique du Congo. Nous accompagnons les entreprises et marques dans la conception d'expériences e-commerce haut de gamme et sécurisées.
+                        </p>
+                    </div>
+                    <div class="flex-shrink-0 text-center sm:text-left space-y-2 border-t md:border-t-0 md:border-l border-inik-200 pt-6 md:pt-0 md:pl-8">
+                        <div class="text-xs font-bold text-slate-500 uppercase">Coordonnées Directes</div>
+                        <a href="https://inikconsulting.net" target="_blank" class="block font-bold text-inik-600 hover:underline">inikconsulting.net</a>
+                        <a href="mailto:info@inikconsulting.net" class="block text-sm text-slate-700 hover:underline">info@inikconsulting.net</a>
+                        <a href="tel:+243977148977" class="block text-sm font-bold text-amber-700 hover:underline">+243 977 148 977</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ======================================= -->
+        <!-- VUE 6 : CONTACT (contact.html) -->
+        <!-- ======================================= -->
+        <section id="page-contact" class="page-view">
+            <div class="bg-inik-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto text-center">
+                    <h1 class="text-3xl font-extrabold">Contactez INIK Consulting</h1>
+                    <p class="text-slate-400 text-sm mt-1">Notre équipe commerciale et support est à votre disposition en RDC.</p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Cartes Coordonnées Directes -->
+                    <div class="space-y-4">
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start space-x-4">
+                            <div class="bg-inik-600 text-white p-3.5 rounded-xl text-lg">
+                                <i class="fa-solid fa-globe"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">Site Web Officiel</h4>
+                                <p class="text-xs text-slate-500 mb-2">Visitez notre plateforme entreprise</p>
+                                <a href="https://inikconsulting.net" target="_blank" class="text-sm font-bold text-inik-600 hover:underline">inikconsulting.net</a>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start space-x-4">
+                            <div class="bg-amber-500 text-white p-3.5 rounded-xl text-lg">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">Adresse Courriel</h4>
+                                <p class="text-xs text-slate-500 mb-2">Pour vos demandes & partenariats</p>
+                                <a href="mailto:info@inikconsulting.net" class="text-sm font-bold text-inik-600 hover:underline">info@inikconsulting.net</a>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start space-x-4">
+                            <div class="bg-emerald-600 text-white p-3.5 rounded-xl text-lg">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">Téléphone & WhatsApp</h4>
+                                <p class="text-xs text-slate-500 mb-2">Service client 7j/7 RDC</p>
+                                <a href="tel:+243977148977" class="text-sm font-bold text-emerald-700 hover:underline">+243 977 148 977</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulaire de Message Client -->
+                    <div class="lg:col-span-2 bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+                        <h3 class="text-xl font-bold text-slate-900 mb-6">Envoyer un Message Direct</h3>
+                        
+                        <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Nom complet *</label>
+                                    <input type="text" required placeholder="Ex: Grâce Kabongo" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 px-3 text-sm focus:ring-2 focus:ring-inik-600 focus:outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Téléphone RDC *</label>
+                                    <input type="tel" required placeholder="Ex: +243 998 765 432" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 px-3 text-sm focus:ring-2 focus:ring-inik-600 focus:outline-none">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Sujet de votre demande *</label>
+                                <input type="text" required placeholder="Ex: Réservation de taille / Question sur la livraison" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 px-3 text-sm focus:ring-2 focus:ring-inik-600 focus:outline-none">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Votre Message *</label>
+                                <textarea rows="4" required placeholder="Rédigez votre message ici..." class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 px-3 text-sm focus:ring-2 focus:ring-inik-600 focus:outline-none"></textarea>
+                            </div>
+
+                            <button type="submit" class="bg-inik-900 hover:bg-inik-700 text-white font-bold py-3.5 px-8 rounded-xl shadow-md transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-paper-plane text-amber-400"></i>
+                                <span>Envoyer le Message</span>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================================================= -->
+        <!-- PORTAIL D'ADMINISTRATION COMPLET (admin/index, admin/gestion, etc.) -->
+        <!-- ========================================================================= -->
+        <section id="page-admin" class="page-view bg-slate-100 min-h-screen pb-16">
+            
+            <!-- Navigation de l'Espace Administration -->
+            <div class="bg-slate-900 text-white border-b border-slate-800">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col md:flex-row justify-between items-center py-4 gap-4">
+                        <div class="flex items-center space-x-3">
+                            <span class="bg-amber-500 text-slate-950 font-black text-xs px-2.5 py-1 rounded uppercase">ADMIN PORTAL</span>
+                            <span class="font-bold text-lg">Tableau de Bord & Operations</span>
+                        </div>
+
+                        <!-- Sub-Navigation Admin -->
+                        <div class="flex items-center space-x-2 text-xs">
+                            <button onclick="switchAdminTab('dashboard')" class="admin-tab-btn bg-inik-600 text-white px-3.5 py-2 rounded-lg font-semibold" data-tab="dashboard">
+                                <i class="fa-solid fa-chart-line mr-1"></i> Dashboard
+                            </button>
+                            <button onclick="switchAdminTab('products')" class="admin-tab-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-3.5 py-2 rounded-lg font-semibold" data-tab="products">
+                                <i class="fa-solid fa-shirt mr-1"></i> Gestion Produits
+                            </button>
+                            <button onclick="switchAdminTab('orders')" class="admin-tab-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-3.5 py-2 rounded-lg font-semibold" data-tab="orders">
+                                <i class="fa-solid fa-clipboard-list mr-1"></i> Commandes RDC
+                            </button>
+                            <button onclick="switchAdminTab('customers')" class="admin-tab-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-3.5 py-2 rounded-lg font-semibold" data-tab="customers">
+                                <i class="fa-solid fa-users mr-1"></i> Clients
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+                <!-- 1. SOUS-VUE ADMIN : TABLEAU DE BORD (admin/index.html) -->
+                <div id="admin-tab-dashboard" class="admin-subtab">
+                    
+                    <!-- KPI Cards Statistiques -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-xs font-bold uppercase text-slate-500">Chiffre d'Affaires</span>
+                                <span class="p-2 bg-emerald-50 text-emerald-600 rounded-lg text-sm"><i class="fa-solid fa-dollar-sign"></i></span>
+                            </div>
+                            <div class="text-2xl font-extrabold text-slate-900">$4,850.00</div>
+                            <div class="text-xs text-slate-500 mt-1">~ 13.580.000 FC ce mois</div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-xs font-bold uppercase text-slate-500">Commandes RDC</span>
+                                <span class="p-2 bg-inik-50 text-inik-600 rounded-lg text-sm"><i class="fa-solid fa-box"></i></span>
+                            </div>
+                            <div class="text-2xl font-extrabold text-slate-900" id="admin-kpi-orders-count">0</div>
+                            <div class="text-xs text-emerald-600 font-medium mt-1">+12% cette semaine</div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-xs font-bold uppercase text-slate-500">Articles en Stock</span>
+                                <span class="p-2 bg-amber-50 text-amber-600 rounded-lg text-sm"><i class="fa-solid fa-warehouse"></i></span>
+                            </div>
+                            <div class="text-2xl font-extrabold text-slate-900" id="admin-kpi-stock-count">0</div>
+                            <div class="text-xs text-slate-500 mt-1">Répartis sur 4 catégories</div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-xs font-bold uppercase text-slate-500">Clients Enregistrés</span>
+                                <span class="p-2 bg-purple-50 text-purple-600 rounded-lg text-sm"><i class="fa-solid fa-users"></i></span>
+                            </div>
+                            <div class="text-2xl font-extrabold text-slate-900">148</div>
+                            <div class="text-xs text-slate-500 mt-1">Lubumbashi, Kinshasa, Likasi</div>
+                        </div>
+                    </div>
+
+                    <!-- Liste Récente des Commandes -->
+                    <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                        <h3 class="text-lg font-bold text-slate-900 mb-4">Aperçu des Commandes Récentes</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="text-[11px] uppercase font-bold text-slate-400 border-b border-slate-100">
+                                        <th class="pb-3">N° Commande</th>
+                                        <th class="pb-3">Client</th>
+                                        <th class="pb-3">Ville</th>
+                                        <th class="pb-3">Paiement</th>
+                                        <th class="pb-3">Total USD</th>
+                                        <th class="pb-3">Statut</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dashboard-recent-orders" class="divide-y divide-slate-100 text-sm">
+                                    <!-- Injecté par JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. SOUS-VUE ADMIN : GESTION DES PRODUITS (admin/gestion.html) -->
+                <div id="admin-tab-products" class="admin-subtab hidden">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold text-slate-900">Gestion du Catalogue Produits</h3>
+                        <button onclick="toggleAddProductModal()" class="bg-inik-600 hover:bg-inik-700 text-white text-xs font-bold py-2.5 px-4 rounded-xl shadow flex items-center gap-2">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Ajouter un Nouveau Vêtement</span>
+                        </button>
+                    </div>
+
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead class="bg-slate-50 text-[11px] uppercase font-bold text-slate-500 border-b border-slate-200">
+                                    <tr>
+                                        <th class="p-4">Article</th>
+                                        <th class="p-4">Catégorie</th>
+                                        <th class="p-4">Prix ($ USD)</th>
+                                        <th class="p-4">Équiv. FC</th>
+                                        <th class="p-4">Stock</th>
+                                        <th class="p-4 text-right">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-products-table" class="divide-y divide-slate-100 text-sm">
+                                    <!-- Injecté par JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. SOUS-VUE ADMIN : GESTION DES COMMANDES (admin/commandes.html) -->
+                <div id="admin-tab-orders" class="admin-subtab hidden">
+                    <h3 class="text-xl font-bold text-slate-900 mb-6">Gestion des Commandes Clients RDC</h3>
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead class="bg-slate-50 text-[11px] uppercase font-bold text-slate-500 border-b border-slate-200">
+                                    <tr>
+                                        <th class="p-4">ID</th>
+                                        <th class="p-4">Client</th>
+                                        <th class="p-4">Contact</th>
+                                        <th class="p-4">Adresse & Ville</th>
+                                        <th class="p-4">Mode Paiement</th>
+                                        <th class="p-4">Montant Total</th>
+                                        <th class="p-4">Statut Commande</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-orders-table" class="divide-y divide-slate-100 text-sm">
+                                    <!-- Injecté par JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. SOUS-VUE ADMIN : CLIENTS (admin/clients.html) -->
+                <div id="admin-tab-customers" class="admin-subtab hidden">
+                    <h3 class="text-xl font-bold text-slate-900 mb-6">Répertoire des Clients Congolais</h3>
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead class="bg-slate-50 text-[11px] uppercase font-bold text-slate-500 border-b border-slate-200">
+                                    <tr>
+                                        <th class="p-4">Nom du Client</th>
+                                        <th class="p-4">Numéro WhatsApp / Tél</th>
+                                        <th class="p-4">Ville</th>
+                                        <th class="p-4">Commandes Effectuées</th>
+                                        <th class="p-4">Statut Compte</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-customers-table" class="divide-y divide-slate-100 text-sm">
+                                    <!-- Injecté par JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ========================================== -->
+    <!-- MODAL D'AJOUT PRODUIT (ADMINISTRATION) -->
+    <!-- ========================================== -->
+    <div id="modal-add-product" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white w-full max-w-lg rounded-2xl shadow-xl overflow-hidden border border-slate-200">
+            <div class="bg-slate-900 text-white p-5 flex justify-between items-center">
+                <h4 class="font-bold text-lg">Ajouter un Vêtement au Catalogue</h4>
+                <button onclick="toggleAddProductModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <form onsubmit="handleCreateProduct(event)" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Nom du produit *</label>
+                    <input type="text" id="new-prod-name" required placeholder="Ex: Chemise Wax Luxe Kinshasa" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2 px-3 text-sm focus:ring-2 focus:ring-inik-600 focus:outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Catégorie *</label>
+                        <select id="new-prod-cat" required class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2 px-3 text-sm focus:ring-2 focus:ring-inik-600 focus:outline-none">
+                            <option value="Homme">Homme</option>
+                            <option value="Femme">Femme</option>
+                            <option value="Casual">Casual</option>
+                            <option value="Accessoires">Accessoires</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Prix ($ USD) *</label>
+                        <input type="number" id="new-prod-price" step="0.01" required placeholder="Ex: 45.00" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2 px-3 text-sm focus:ring-2 focus:ring-inik-600 focus:outline-none">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Stock Initial *</label>
+                        <input type="number" id="new-prod-stock" required placeholder="Ex: 15" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2 px-3 text-sm focus:ring-2 focus:ring-inik-600 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">URL Image Unsplash *</label>
+                        <input type="url" id="new-prod-img" required value="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=800&q=80" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2 px-3 text-sm focus:ring-2 focus:ring-inik-600 focus:outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Description courte</label>
+                    <textarea id="new-prod-desc" rows="2" placeholder="Description du tissu et de la coupe..." class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2 px-3 text-sm focus:ring-2 focus:ring-inik-600 focus:outline-none"></textarea>
+                </div>
+                <div class="pt-4 flex justify-end space-x-3">
+                    <button type="button" onclick="toggleAddProductModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl text-xs font-bold text-slate-700">Annuler</button>
+                    <button type="submit" class="px-5 py-2 bg-inik-600 hover:bg-inik-700 text-white rounded-xl text-xs font-bold">Enregistrer le Produit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- SYSTEME DE NOTIFICATION TOAST INTERACTIF -->
+    <div id="toast-notification" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-slate-700 flex items-center space-x-3">
+        <div id="toast-icon" class="text-amber-400 text-lg">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <div id="toast-message" class="text-sm font-semibold">Message de notification</div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- PIED DE PAGE ET CONTACT INIK CONSULTING -->
+    <!-- ========================================== -->
+    <footer class="bg-inik-900 text-slate-300 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                
+                <!-- Colonne 1: Marque & Devise -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="bg-amber-500 text-slate-950 p-2 rounded-lg">
+                            <i class="fa-solid fa-shirt"></i>
+                        </div>
+                        <span class="text-2xl font-black text-white">INIK <span class="text-amber-400 font-light">Mode</span></span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Boutique référence de vêtements et mode en République Démocratique du Congo. Conçue pour offrir l'élégance vestimentaire accessible avec paiement Mobile Money.
+                    </p>
+                </div>
+
+                <!-- Colonne 2: Liens Rapides Client -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 border-l-2 border-amber-500 pl-2">Navigation</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><button onclick="navigateTo('index')" class="hover:text-amber-400 transition-colors">Accueil</button></li>
+                        <li><button onclick="navigateTo('catalogue')" class="hover:text-amber-400 transition-colors">Catalogue Général</button></li>
+                        <li><button onclick="navigateTo('apropos')" class="hover:text-amber-400 transition-colors">À Propos</button></li>
+                        <li><button onclick="navigateTo('contact')" class="hover:text-amber-400 transition-colors">Contact & Agence</button></li>
+                        <li><button onclick="navigateTo('admin-index')" class="hover:text-amber-400 text-slate-400 transition-colors">Espace d'Administration</button></li>
+                    </ul>
+                </div>
+
+                <!-- Colonne 3: Coordonnées Officieuses Inik Consulting (Exigence) -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 border-l-2 border-amber-500 pl-2">Contact & Entreprise</h4>
+                    <ul class="space-y-3 text-xs">
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-globe text-amber-500 w-4"></i>
+                            <a href="https://inikconsulting.net" target="_blank" class="hover:text-amber-400 transition-colors underline">inikconsulting.net</a>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-envelope text-amber-500 w-4"></i>
+                            <a href="mailto:info@inikconsulting.net" class="hover:text-amber-400 transition-colors underline">info@inikconsulting.net</a>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-phone text-amber-500 w-4"></i>
+                            <a href="tel:+243977148977" class="hover:text-amber-400 transition-colors underline">+243 977 148 977</a>
+                        </li>
+                        <li class="text-slate-400 pt-1">
+                            <i class="fa-solid fa-location-dot text-amber-500 w-4"></i>
+                            <span>Lubumbashi & Kinshasa, RDC</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Colonne 4: Paiements Mobiles Acceptés -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 border-l-2 border-amber-500 pl-2">Paiements RDC</h4>
+                    <p class="text-xs text-slate-400 mb-3">Modes de règlement sécurisés acceptés à la livraison et à distance :</p>
+                    <div class="flex flex-wrap gap-2 text-xs font-bold text-slate-900">
+                        <span class="bg-emerald-400 px-2.5 py-1 rounded">M-Pesa</span>
+                        <span class="bg-red-400 px-2.5 py-1 rounded">Airtel Money</span>
+                        <span class="bg-orange-400 px-2.5 py-1 rounded">Orange Money</span>
+                        <span class="bg-slate-200 px-2.5 py-1 rounded">Cash</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bas de Footer / Copyright -->
+            <div class="border-t border-slate-800 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500">
+                <p>&copy; 2026 INIK Mode. Tous droits réservés.</p>
+                <p class="mt-2 sm:mt-0">
+                    Conçu et propulsé par <a href="https://inikconsulting.net" target="_blank" class="text-amber-400 font-bold hover:underline">INIK Consulting</a>.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ========================================== -->
+    <!-- LOGIQUE JAVASCRIPT ET GESTION D'ETAT LOCAL -->
+    <!-- ========================================== -->
+    <script>
+        // Taux de conversion fixe pour la RDC (1 USD = 2800 FC)
+        const EXCHANGE_RATE_FC = 2800;
+
+        // Base de données simulée de produits de mode (Visages humains exclus des photos)
+        let productsData = [
+            {
+                id: 1,
+                name: "Veste Blazer Homme Prestige",
+                category: "Homme",
+                price: 75.00,
+                stock: 12,
+                image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=800&q=80",
+                description: "Veste de costume sur mesure avec coutures renforcées. Idéale pour réunions d'affaires et événements diplomatiques à Kinshasa."
+            },
+            {
+                id: 2,
+                name: "Robe de Soirée Satin Doré",
+                category: "Femme",
+                price: 65.00,
+                stock: 8,
+                image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80",
+                description: "Robe longue en satin de soie d'une finesse remarquable. Coupe fluide offrant une élégance inégalée pour réceptions."
+            },
+            {
+                id: 3,
+                name: "Chemise Coton Pima Pliée",
+                category: "Casual",
+                price: 35.00,
+                stock: 25,
+                image: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=800&q=80",
+                description: "Chemise homme 100% coton respirant, parfait pour le climat chaud de Lubumbashi. Repassage facile."
+            },
+            {
+                id: 4,
+                name: "Sneakers Urban Comfort",
+                category: "Accessoires",
+                price: 55.00,
+                stock: 18,
+                image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80",
+                description: "Chaussures légères à semelle amortissante. Design épuré s'accordant avec shorts et jeans."
+            },
+            {
+                id: 5,
+                name: "Veste en Jean Vintage Flatlay",
+                category: "Casual",
+                price: 48.00,
+                stock: 10,
+                image: "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=800&q=80",
+                description: "Veste en denim haut de gamme, boutons métalliques renforcés. Style intemporel."
+            },
+            {
+                id: 6,
+                name: "Sac à Main Cuir Signature",
+                category: "Accessoires",
+                price: 90.00,
+                stock: 5,
+                image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80",
+                description: "Sac à main en cuir véritable avec finitions dorées. Compartiments multiples."
+            }
+        ];
+
+        // Exemple de commandes enregistrées en RDC
+        let ordersData = [
+            {
+                id: "CMD-2026-881",
+                customer: "Jean-Baptiste Mukendi",
+                phone: "+243 812 345 678",
+                city: "Lubumbashi",
+                address: "Av. Lumumba N° 45",
+                payment: "M-Pesa",
+                totalUSD: 140.00,
+                status: "En cours"
+            },
+            {
+                id: "CMD-2026-882",
+                customer: "Grâce Kabongo",
+                phone: "+243 998 765 432",
+                city: "Kinshasa",
+                address: "Boulevard du 30 Juin",
+                payment: "Orange Money",
+                totalUSD: 65.00,
+                status: "Livré"
+            },
+            {
+                id: "CMD-2026-883",
+                customer: "Patrick Tshisekedi",
+                phone: "+243 854 112 233",
+                city: "Kolwezi",
+                address: "Q. Golfe Nord",
+                payment: "Airtel Money",
+                totalUSD: 90.00,
+                status: "En attente"
+            }
+        ];
+
+        // Exemple de répertoire clients
+        let customersData = [
+            { name: "Jean-Baptiste Mukendi", phone: "+243 812 345 678", city: "Lubumbashi", ordersCount: 3, status: "VIP" },
+            { name: "Grâce Kabongo", phone: "+243 998 765 432", city: "Kinshasa", ordersCount: 1, status: "Actif" },
+            { name: "Patrick Tshisekedi", phone: "+243 854 112 233", city: "Kolwezi", ordersCount: 2, status: "Actif" },
+            { name: "Sarah Mbuyi", phone: "+243 970 000 111", city: "Likasi", ordersCount: 4, status: "VIP" }
+        ];
+
+        // Panier d'achat local client
+        let cart = [];
+        let activeCategory = 'Tous';
+        let currentSelectedProduct = null;
+
+        // Fonction d'initialisation au chargement du DOM
+        document.addEventListener('DOMContentLoaded', () => {
+            renderFeaturedProducts();
+            renderCatalogProducts();
+            updateCartUI();
+            renderAdminDashboard();
+            renderAdminProducts();
+            renderAdminOrders();
+            renderAdminCustomers();
+        });
+
+        // Navigation entre les pages virtuelles
+        function navigateTo(pageId) {
+            const pages = document.querySelectorAll('.page-view');
+            pages.forEach(page => page.classList.remove('active'));
+
+            if (pageId.startsWith('admin-')) {
+                document.getElementById('page-admin').classList.add('active');
+                const adminTab = pageId.replace('admin-', '');
+                switchAdminTab(adminTab);
+            } else {
+                const targetPage = document.getElementById('page-' + pageId);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                }
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Formatage de la monnaie en Francs Congolais
+        function formatFC(priceUSD) {
+            const fc = priceUSD * EXCHANGE_RATE_FC;
+            return new Intl.NumberFormat('fr-CD').format(fc) + ' FC';
+        }
+
+        // Rendu des produits vedettes de la page d'accueil
+        function renderFeaturedProducts() {
+            const container = document.getElementById('featured-products-container');
+            if (!container) return;
+            const featured = productsData.slice(0, 4);
+
+            container.innerHTML = featured.map(prod => `
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+                    <div class="relative aspect-square overflow-hidden bg-slate-100 cursor-pointer" onclick="openProductDetail(${prod.id})">
+                        <img src="${prod.image}" alt="${prod.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute top-3 left-3 bg-inik-900 text-amber-400 text-[10px] font-bold uppercase px-2.5 py-1 rounded-full">
+                            ${prod.category}
+                        </span>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-bold text-slate-900 text-base mb-1 cursor-pointer hover:text-inik-600" onclick="openProductDetail(${prod.id})">${prod.name}</h4>
+                        <div class="flex justify-between items-baseline mb-4">
+                            <span class="text-lg font-extrabold text-inik-600">$${prod.price.toFixed(2)}</span>
+                            <span class="text-xs text-slate-500">~ ${formatFC(prod.price)}</span>
+                        </div>
+                        <button onclick="addToCart(${prod.id})" class="w-full bg-slate-100 hover:bg-inik-600 hover:text-white text-slate-800 text-xs font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>Ajouter au Panier</span>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Rendu et filtrage du Catalogue
+        function renderCatalogProducts() {
+            const container = document.getElementById('catalog-grid');
+            const countLabel = document.getElementById('product-count');
+            if (!container) return;
+
+            const searchVal = (document.getElementById('search-input')?.value || '').toLowerCase();
+            const sortVal = document.getElementById('sort-select')?.value || 'default';
+
+            let filtered = productsData.filter(prod => {
+                const matchCat = (activeCategory === 'Tous') || (prod.category === activeCategory);
+                const matchSearch = prod.name.toLowerCase().includes(searchVal) || prod.description.toLowerCase().includes(searchVal);
+                return matchCat && matchSearch;
+            });
+
+            if (sortVal === 'low-high') filtered.sort((a, b) => a.price - b.price);
+            if (sortVal === 'high-low') filtered.sort((a, b) => b.price - a.price);
+
+            if (countLabel) countLabel.innerText = filtered.length;
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full py-16 text-center text-slate-500">
+                        <i class="fa-solid fa-shirt text-4xl text-slate-300 mb-3"></i>
+                        <p class="font-semibold text-base">Aucun vêtement ne correspond à votre recherche.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filtered.map(prod => `
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow group flex flex-col justify-between">
+                    <div>
+                        <div class="relative aspect-square overflow-hidden bg-slate-100 cursor-pointer" onclick="openProductDetail(${prod.id})">
+                            <img src="${prod.image}" alt="${prod.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-3 left-3 bg-slate-900 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded-full">
+                                ${prod.category}
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h4 class="font-bold text-slate-900 text-base mb-1 cursor-pointer hover:text-inik-600" onclick="openProductDetail(${prod.id})">${prod.name}</h4>
+                            <p class="text-xs text-slate-500 line-clamp-2 mb-3">${prod.description}</p>
+                            <div class="flex justify-between items-baseline mb-2">
+                                <span class="text-xl font-extrabold text-inik-600">$${prod.price.toFixed(2)}</span>
+                                <span class="text-xs text-slate-500 font-medium">${formatFC(prod.price)}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0">
+                        <button onclick="addToCart(${prod.id})" class="w-full bg-inik-900 hover:bg-inik-700 text-white text-xs font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2 shadow-sm">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                            <span>Ajouter au panier</span>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function setCategoryFilter(category) {
+            activeCategory = category;
+            const buttons = document.querySelectorAll('#category-filters button');
+            buttons.forEach(btn => {
+                if (btn.innerText.includes(category) || (category === 'Tous' && btn.innerText.includes('Tous'))) {
+                    btn.className = "cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium bg-inik-600 text-white";
+                } else {
+                    btn.className = "cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-100";
+                }
+            });
+            renderCatalogProducts();
+        }
+
+        function filterCategoryAndNavigate(category) {
+            navigateTo('catalogue');
+            setCategoryFilter(category);
+        }
+
+        function filterProducts() {
+            renderCatalogProducts();
+        }
+
+        // Vue détaillée d'un produit
+        function openProductDetail(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+            currentSelectedProduct = product;
+
+            const container = document.getElementById('product-detail-container');
+            container.innerHTML = `
+                <div class="rounded-2xl overflow-hidden bg-slate-100 border border-slate-200">
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-96 sm:h-[450px] object-cover">
+                </div>
+                <div class="flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-bold text-amber-600 uppercase tracking-widest bg-amber-50 px-3 py-1 rounded-full border border-amber-200">${product.category}</span>
+                        <h2 class="text-3xl font-extrabold text-slate-900 mt-3 mb-2">${product.name}</h2>
+                        <div class="flex items-baseline gap-4 mb-6">
+                            <span class="text-3xl font-extrabold text-inik-600">$${product.price.toFixed(2)}</span>
+                            <span class="text-sm font-semibold text-slate-500">Équivalent : ${formatFC(product.price)}</span>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">${product.description}</p>
+                        
+                        <!-- Choix de Taille -->
+                        <div class="mb-6">
+                            <label class="block text-xs font-bold uppercase text-slate-700 mb-2">Sélectionner la Taille</label>
+                            <div class="flex space-x-3">
+                                <button class="w-10 h-10 rounded-xl border-2 border-inik-600 text-inik-600 font-bold text-sm">S</button>
+                                <button class="w-10 h-10 rounded-xl border border-slate-300 text-slate-700 hover:border-slate-400 font-bold text-sm">M</button>
+                                <button class="w-10 h-10 rounded-xl border border-slate-300 text-slate-700 hover:border-slate-400 font-bold text-sm">L</button>
+                                <button class="w-10 h-10 rounded-xl border border-slate-300 text-slate-700 hover:border-slate-400 font-bold text-sm">XL</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 pt-6 border-t border-slate-100">
+                        <button onclick="addToCart(${product.id})" class="w-full bg-inik-900 hover:bg-inik-700 text-white font-bold py-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-bag-shopping text-amber-400"></i>
+                            <span>Ajouter cet article au panier</span>
+                        </button>
+                        <a href="https://wa.me/243977148977?text=Bonjour%20INIK%20Mode,%20je%20souhaite%20commander%20l'article%20:${encodeURIComponent(product.name)}" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>Commander directement sur WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            `;
+            navigateTo('produit');
+        }
+
+        // Ajout d'articles au Panier
+        function addToCart(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCartUI();
+            showToast(`"${product.name}" ajouté au panier !`);
+        }
+
+        function updateCartQuantity(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (!item) return;
+
+            item.quantity += delta;
+            if (item.quantity <= 0) {
+                cart = cart.filter(i => i.id !== productId);
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(i => i.id !== productId);
+            updateCartUI();
+            showToast("Article retiré du panier.");
+        }
+
+        // Mise à jour de l'interface du panier et calculs financiers
+        function updateCartUI() {
+            const totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+            document.getElementById('cart-count').innerText = totalCount;
+            document.getElementById('cart-item-count-badge').innerText = `${totalCount} article${totalCount > 1 ? 's' : ''}`;
+
+            const container = document.getElementById('cart-items-list');
+            const subtotalEl = document.getElementById('summary-subtotal');
+            const totalUsdEl = document.getElementById('summary-total-usd');
+            const totalFcEl = document.getElementById('summary-total-fc');
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="py-12 text-center text-slate-400">
+                        <i class="fa-solid fa-basket-shopping text-4xl mb-3 text-slate-300"></i>
+                        <p class="font-medium text-slate-600">Votre panier est actuellement vide.</p>
+                        <button onclick="navigateTo('catalogue')" class="mt-4 inline-block text-xs font-bold bg-inik-600 text-white py-2 px-4 rounded-lg">Découvrir la boutique</button>
+                    </div>
+                `;
+                subtotalEl.innerText = "$0.00";
+                totalUsdEl.innerText = "$0.00";
+                totalFcEl.innerText = "~ 0 FC";
+                return;
+            }
+
+            let subtotal = 0;
+            container.innerHTML = cart.map(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                return `
+                    <div class="py-4 flex items-center justify-between gap-4">
+                        <div class="flex items-center space-x-4">
+                            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-xl bg-slate-100 flex-shrink-0">
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">${item.name}</h4>
+                                <span class="text-xs text-slate-500">$${item.price.toFixed(2)} l'unité</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="flex items-center border border-slate-200 rounded-lg overflow-hidden bg-slate-50">
+                                <button onclick="updateCartQuantity(${item.id}, -1)" class="px-2.5 py-1 text-slate-600 hover:bg-slate-200">-</button>
+                                <span class="px-3 py-1 font-bold text-xs text-slate-800">${item.quantity}</span>
+                                <button onclick="updateCartQuantity(${item.id}, 1)" class="px-2.5 py-1 text-slate-600 hover:bg-slate-200">+</button>
+                            </div>
+                            <span class="font-extrabold text-sm text-slate-900 w-16 text-right">$${itemTotal.toFixed(2)}</span>
+                            <button onclick="removeFromCart(${item.id})" class="text-slate-400 hover:text-red-500 p-1"><i class="fa-solid fa-trash-can text-sm"></i></button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            const deliveryFee = 5.00; // Frais fixes de livraison simulés
+            const grandTotalUSD = subtotal + deliveryFee;
+
+            subtotalEl.innerText = `$${subtotal.toFixed(2)}`;
+            totalUsdEl.innerText = `$${grandTotalUSD.toFixed(2)}`;
+            totalFcEl.innerText = `~ ${formatFC(grandTotalUSD)}`;
+        }
+
+        // Soumission de la Commande
+        function handleCheckout(e) {
+            e.preventDefault();
+            if (cart.length === 0) {
+                showToast("Votre panier est vide. Veuillez ajouter un vêtement avant de valider.");
+                return;
+            }
+
+            const name = document.getElementById('cust-name').value;
+            const phone = document.getElementById('cust-phone').value;
+            const city = document.getElementById('cust-city').value;
+            const address = document.getElementById('cust-address').value;
+            const payment = document.querySelector('input[name="payment-method"]:checked').value;
+
+            const subtotal = cart.reduce((acc, i) => acc + (i.price * i.quantity), 0);
+            const total = subtotal + 5.00;
+
+            const newOrder = {
+                id: `CMD-2026-${Math.floor(100 + Math.random() * 900)}`,
+                customer: name,
+                phone: phone,
+                city: city,
+                address: address,
+                payment: payment,
+                totalUSD: total,
+                status: "En attente"
+            };
+
+            ordersData.unshift(newOrder);
+
+            // Redirection WhatsApp préremplie
+            const message = `Bonjour INIK Mode (Inik Consulting), je souhaite valider la commande ${newOrder.id}:\n- Client: ${name}\n- Tél: ${phone}\n- Ville: ${city} (${address})\n- Mode Paiement: ${payment}\n- Total: $${total.toFixed(2)} (~ ${formatFC(total)})`;
+            
+            showToast("Commande enregistrée ! Redirection vers WhatsApp...");
+            cart = [];
+            updateCartUI();
+            renderAdminOrders();
+            renderAdminDashboard();
+
+            setTimeout(() => {
+                window.open(`https://wa.me/243977148977?text=${encodeURIComponent(message)}`, '_blank');
+            }, 1200);
+        }
+
+        // Gestion du formulaire de contact
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showToast("Votre message a été envoyé à l'équipe INIK Consulting.");
+            e.target.reset();
+        }
+
+        // LOGIQUE PORTAIL D'ADMINISTRATION
+        function switchAdminTab(tabName) {
+            const tabs = document.querySelectorAll('.admin-subtab');
+            tabs.forEach(tab => tab.classList.add('hidden'));
+
+            const target = document.getElementById(`admin-tab-${tabName}`);
+            if (target) target.classList.remove('hidden');
+
+            const btns = document.querySelectorAll('.admin-tab-btn');
+            btns.forEach(btn => {
+                if (btn.dataset.tab === tabName) {
+                    btn.className = "admin-tab-btn bg-inik-600 text-white px-3.5 py-2 rounded-lg font-semibold";
+                } else {
+                    btn.className = "admin-tab-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-3.5 py-2 rounded-lg font-semibold";
+                }
+            });
+        }
+
+        function renderAdminDashboard() {
+            document.getElementById('admin-kpi-orders-count').innerText = ordersData.length;
+            document.getElementById('admin-kpi-stock-count').innerText = productsData.reduce((acc, p) => acc + p.stock, 0);
+
+            const tbody = document.getElementById('dashboard-recent-orders');
+            if (!tbody) return;
+
+            tbody.innerHTML = ordersData.slice(0, 4).map(ord => `
+                <tr class="hover:bg-slate-50">
+                    <td class="py-3 font-bold text-inik-600">${ord.id}</td>
+                    <td class="py-3 font-medium text-slate-800">${ord.customer}</td>
+                    <td class="py-3 text-slate-600">${ord.city}</td>
+                    <td class="py-3"><span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded text-xs">${ord.payment}</span></td>
+                    <td class="py-3 font-bold text-slate-900">$${ord.totalUSD.toFixed(2)}</td>
+                    <td class="py-3">
+                        <span class="px-2 py-1 rounded-full text-[11px] font-bold ${ord.status === 'Livré' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}">
+                            ${ord.status}
+                        </span>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderAdminProducts() {
+            const tbody = document.getElementById('admin-products-table');
+            if (!tbody) return;
+
+            tbody.innerHTML = productsData.map(prod => `
+                <tr class="hover:bg-slate-50 border-b border-slate-100">
+                    <td class="p-4 flex items-center space-x-3">
+                        <img src="${prod.image}" alt="${prod.name}" class="w-10 h-10 rounded-lg object-cover bg-slate-100">
+                        <span class="font-bold text-slate-900">${prod.name}</span>
+                    </td>
+                    <td class="p-4"><span class="bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md text-xs font-semibold">${prod.category}</span></td>
+                    <td class="p-4 font-bold text-inik-600">$${prod.price.toFixed(2)}</td>
+                    <td class="p-4 text-xs text-slate-500">${formatFC(prod.price)}</td>
+                    <td class="p-4 font-bold ${prod.stock < 10 ? 'text-amber-600' : 'text-slate-700'}">${prod.stock} pcs</td>
+                    <td class="p-4 text-right space-x-2">
+                        <button onclick="deleteProduct(${prod.id})" class="text-red-500 hover:text-red-700 font-bold text-xs bg-red-50 hover:bg-red-100 px-2.5 py-1.5 rounded-lg">
+                            Supprimer
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderAdminOrders() {
+            const tbody = document.getElementById('admin-orders-table');
+            if (!tbody) return;
+
+            tbody.innerHTML = ordersData.map(ord => `
+                <tr class="hover:bg-slate-50 border-b border-slate-100">
+                    <td class="p-4 font-bold text-inik-600">${ord.id}</td>
+                    <td class="p-4 font-medium text-slate-900">${ord.customer}</td>
+                    <td class="p-4 text-xs text-slate-600">${ord.phone}</td>
+                    <td class="p-4 text-xs text-slate-600">${ord.address}, <span class="font-bold">${ord.city}</span></td>
+                    <td class="p-4"><span class="bg-amber-50 text-amber-800 border border-amber-200 px-2.5 py-1 rounded text-xs font-semibold">${ord.payment}</span></td>
+                    <td class="p-4 font-extrabold text-slate-900">$${ord.totalUSD.toFixed(2)}</td>
+                    <td class="p-4">
+                        <select onchange="updateOrderStatus('${ord.id}', this.value)" class="text-xs font-bold rounded-lg border border-slate-300 py-1 px-2 bg-white">
+                            <option value="En attente" ${ord.status === 'En attente' ? 'selected' : ''}>En attente</option>
+                            <option value="En cours" ${ord.status === 'En cours' ? 'selected' : ''}>En cours de livraison</option>
+                            <option value="Livré" ${ord.status === 'Livré' ? 'selected' : ''}>Livré</option>
+                            <option value="Annulé" ${ord.status === 'Annulé' ? 'selected' : ''}>Annulé</option>
+                        </select>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderAdminCustomers() {
+            const tbody = document.getElementById('admin-customers-table');
+            if (!tbody) return;
+
+            tbody.innerHTML = customersData.map(cust => `
+                <tr class="hover:bg-slate-50 border-b border-slate-100">
+                    <td class="p-4 font-bold text-slate-900">${cust.name}</td>
+                    <td class="p-4 text-xs text-slate-600">${cust.phone}</td>
+                    <td class="p-4 text-slate-700 font-medium">${cust.city}</td>
+                    <td class="p-4 font-bold text-inik-600">${cust.ordersCount} commandes</td>
+                    <td class="p-4">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold ${cust.status === 'VIP' ? 'bg-amber-100 text-amber-800' : 'bg-slate-100 text-slate-700'}">
+                            ${cust.status}
+                        </span>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function toggleAddProductModal() {
+            const modal = document.getElementById('modal-add-product');
+            modal.classList.toggle('hidden');
+        }
+
+        function handleCreateProduct(e) {
+            e.preventDefault();
+            const name = document.getElementById('new-prod-name').value;
+            const category = document.getElementById('new-prod-cat').value;
+            const price = parseFloat(document.getElementById('new-prod-price').value);
+            const stock = parseInt(document.getElementById('new-prod-stock').value);
+            const image = document.getElementById('new-prod-img').value;
+            const description = document.getElementById('new-prod-desc').value;
+
+            const newProd = {
+                id: Date.now(),
+                name,
+                category,
+                price,
+                stock,
+                image,
+                description: description || "Article de qualité supérieure sélectionné par INIK Mode."
+            };
+
+            productsData.unshift(newProd);
+            renderCatalogProducts();
+            renderFeaturedProducts();
+            renderAdminProducts();
+            renderAdminDashboard();
+            toggleAddProductModal();
+            showToast("Nouveau vêtement ajouté avec succès au catalogue !");
+        }
+
+        function deleteProduct(productId) {
+            productsData = productsData.filter(p => p.id !== productId);
+            renderCatalogProducts();
+            renderFeaturedProducts();
+            renderAdminProducts();
+            renderAdminDashboard();
+            showToast("Article supprimé du catalogue.");
+        }
+
+        function updateOrderStatus(orderId, newStatus) {
+            const order = ordersData.find(o => o.id === orderId);
+            if (order) {
+                order.status = newStatus;
+                renderAdminDashboard();
+                showToast(`Statut de la commande ${orderId} mis à jour : ${newStatus}`);
+            }
+        }
+
+        // Notification Toast
+        function showToast(message) {
+            const toast = document.getElementById('toast-notification');
+            const msgEl = document.getElementById('toast-message');
+            msgEl.innerText = message;
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
